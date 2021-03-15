@@ -30,3 +30,8 @@ a.text-white:hover {
   width: 100%;
   padding: 10px;
 }
+
+.to-top {
+  position: relative;
+  bottom: 35px;
+}
