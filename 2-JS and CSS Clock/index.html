@@ -13,7 +13,42 @@
         <div class="hand hour-hand"></div>
         <div class="hand min-hand"></div>
         <div class="hand second-hand"></div>
+        <div class="middle-dot"></div>
       </div>
     </div>
   </body>
+  <script>
+    let secondHand = document.querySelector(".second-hand");
+    let minuteHand = document.querySelector(".min-hand");
+    let hourHand = document.querySelector(".hour-hand");
+
+    function setDate() {
+      const now = new Date();
+
+      let seconds = now.getSeconds();
+      let secondsDegrees = (seconds / 60) * 360 + 90; // convert second to degree and + 90 to make the hand start from position 12
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+      let minutes = now.getMinutes();
+      let minutesDegrees = (minutes / 60) * 360 + 90; //convert minute to degree and + 90 to make the hand start from position 12
+      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+      let hours = now.getHours();
+      let hourDegrees = (hours / 12) * 360 + 90; //covert minute to degree and - 54 to make the hand start from position 12
+      hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+
+      if (seconds === 0) {
+        secondHand.style.transition = `all 0.0s`;
+      }
+
+      if (minutes === 0) {
+        minuteHand.style.transition = `all 0.0s`;
+      }
+
+      if (hours === 0) {
+        hourHand.style.transition = `all 0.0s`;
+      }
+    }
+    setInterval(setDate, 1000); // every second = 1000ms
+  </script>
 </html>
